@@ -1,8 +1,7 @@
 name: stesh_app_api
 description: "Books App."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -11,11 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.3 # For making HTTP requests
-  flutter_bloc: ^8.0.1 # For state management
+  http: ^0.13.3
+  flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^1.2.0
+  bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:

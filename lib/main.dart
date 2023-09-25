@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:stesh_app_api/models/product.dart';
+import '../models/product.dart';
 import 'bloc/product_bloc.dart';
 
 import 'screens/cart_screen.dart';
@@ -137,7 +137,6 @@ class ProductListScreen extends StatelessWidget {
     );
   }
 }
-
 class ProductListView extends StatelessWidget {
   final List<Product> products;
 

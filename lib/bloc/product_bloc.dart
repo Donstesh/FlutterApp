@@ -48,13 +48,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     // Register event handlers here
     on<FetchProducts>(_fetchProducts);
   }
-
   void _fetchProducts(FetchProducts event, Emitter<ProductState> emit) async {
     emit(ProductLoadingState());
     try {
-      final response = await httpClient.get(Uri.parse('http://127.0.0.1:8000/api/products'));
+      final response = await httpClient.get(Uri.parse('https://8358-102-217-172-2.ngrok-free.app/api/products'));
       if (response.statusCode == 200) {
-        final List<dynamic> jsonData = json.decode(response.body);
+        final responseJson = response.body;
+        final List<dynamic> jsonData = json.decode(responseJson)['data'];
         final List<Product> products = jsonData.map((data) => Product.fromJson(data)).toList();
         emit(ProductLoadedState(products: products));
       } else {
