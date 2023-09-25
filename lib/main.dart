@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-import 'models/product.dart'; // Replace with your actual product model
+import 'models/product.dart';
 import 'bloc/product_bloc.dart';
+
+import 'screens/cart_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/dashboard_screen.dart';
+import 'screens/payment_screen.dart';
+import 'screens/transaction_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +24,14 @@ class MyApp extends StatelessWidget {
         create: (context) => ProductBloc(httpClient: http.Client()),
         child: ProductListScreen(),
       ),
+      routes: {
+        '/cart': (context) => CartScreen(),
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/dashboard': (context) => DashboardScreen(),
+        '/payment': (context) => PaymentScreen(),
+        '/transaction': (context) => TransactionScreen(),
+      },
     );
   }
 }
@@ -31,8 +45,35 @@ class ProductListScreen extends StatelessWidget {
     productBloc.add(FetchProducts());
 
     return Scaffold(
+
       appBar: AppBar(
-        title: Text('Books List'),
+        backgroundColor: Colors.blue,
+        title: Text('Books List', style: TextStyle(fontWeight: FontWeight.bold),),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'cart') {
+                Navigator.of(context).pushNamed('/cart');
+              } else if (value == 'login') {
+                Navigator.of(context).pushNamed('/login');
+              } else if (value == 'register') {
+                Navigator.of(context).pushNamed('/register');
+              } else if (value == 'payment') {
+                Navigator.of(context).pushNamed('/payment');
+              } else if (value == 'transaction') {
+                Navigator.of(context).pushNamed('/transaction');
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return {'cart', 'login', 'register', 'payment', 'transaction'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
@@ -43,7 +84,7 @@ class ProductListScreen extends StatelessWidget {
           } else if (state is ProductErrorState) {
             return Center(child: Text('Error: ${state.error}'));
           }
-          return Container(); // Handle other states if necessary
+          return Container();
         },
       ),
     );
