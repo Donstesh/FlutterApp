@@ -13,6 +13,7 @@ class TransactionScreen extends StatelessWidget {
   }
 }
 
+
 class TransactioTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class TransactioTable extends StatelessWidget {
       },
       // Add more rows as needed
     ];
+
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

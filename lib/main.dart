@@ -45,10 +45,12 @@ class ProductListScreen extends StatelessWidget {
     productBloc.add(FetchProducts());
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Books List', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          'Books List',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: <Widget>[
           PopupMenuButton<String>(
             onSelected: (value) {
@@ -65,7 +67,13 @@ class ProductListScreen extends StatelessWidget {
               }
             },
             itemBuilder: (BuildContext context) {
-              return {'cart', 'login', 'register', 'payment', 'transaction'}.map((String choice) {
+              return {
+                'cart',
+                'login',
+                'register',
+                'payment',
+                'transaction'
+              }.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -85,6 +93,42 @@ class ProductListScreen extends StatelessWidget {
             return Center(child: Text('Error: ${state.error}'));
           }
           return Container();
+        },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        backgroundColor: Colors.grey[200],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payment),
+            label: 'Payment',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Transactions',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login',
+          ),
+        ],
+        onTap: (index) {
+          // Handle bottom navigation item tap here
+          if (index == 0) {
+            Navigator.of(context).pushNamed('/dashboard');
+          } else if (index == 1) {
+            Navigator.of(context).pushNamed('/payment');
+          } else if (index == 2) {
+            Navigator.of(context).pushNamed('/transaction');
+          } else if (index == 3) {
+            Navigator.of(context).pushNamed('/login');
+          }
         },
       ),
     );

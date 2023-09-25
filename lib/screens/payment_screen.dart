@@ -36,7 +36,7 @@ class PaymentTable extends StatelessWidget {
     ];
 
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+      scrollDirection: Axis.horizontal, // Enable horizontal scrolling
       child: DataTable(
         columns: <DataColumn>[
           DataColumn(
