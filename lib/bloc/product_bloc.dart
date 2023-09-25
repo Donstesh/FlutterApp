@@ -53,7 +53,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   void _fetchProducts(FetchProducts event, Emitter<ProductState> emit) async {
     emit(ProductLoadingState());
     try {
-      final response = await httpClient.get(Uri.parse('http://localhost:8000/api/products')); // Replace with your API endpoint
+      final response = await httpClient.get(Uri.parse('http://127.0.0.1:8000/api/products')); // Replace with your API endpoint
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         final List<Product> products = jsonData.map((data) => Product.fromJson(data)).toList();

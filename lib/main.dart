@@ -147,9 +147,9 @@ class ProductListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = products[index];
         return ListTile(
-          title: Text(product.name),
+          title: Text(product.title),
           subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-          leading: Image.network(product.imageUrl),
+          leading: Image.network(product.image),
         );
       },
     );

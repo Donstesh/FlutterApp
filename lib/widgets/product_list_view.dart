@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/Product.dart';
+
 class ProductListView extends StatelessWidget {
   final List<Product> products; // Replace with your actual product model
 
@@ -12,9 +14,9 @@ class ProductListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = products[index];
         return ListTile(
-          title: Text(product.name),
+          title: Text(product.title),
           subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-          leading: Image.network(product.imageUrl),
+          leading: Image.network(product.image),
         );
       },
     );
