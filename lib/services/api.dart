@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../models/Product.dart';
+import '../models/product.dart';
 
 class ProductService {
-  final String baseUrl = 'https://127.0.0.1:8000/api/products'; // Replace with your API URL
+  final String baseUrl = 'https://127.0.0.1:8000/api'; // Replace with your API URL
 
   Future<List<Product>> getProducts() async {
     final response = await http.get(Uri.parse('$baseUrl/products'));

@@ -6,7 +6,7 @@ class PaymentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Payment History', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: const Text('Payment History', style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body: PaymentTable(),
     );
@@ -14,6 +14,8 @@ class PaymentScreen extends StatelessWidget {
 }
 
 class PaymentTable extends StatelessWidget {
+  const PaymentTable({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Sample data for demonstration (replace with your actual data)
@@ -38,7 +40,7 @@ class PaymentTable extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal, // Enable horizontal scrolling
       child: DataTable(
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text('ID'),
           ),

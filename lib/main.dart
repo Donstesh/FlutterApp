@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
-import 'models/product.dart';
+import 'package:stesh_app_api/models/product.dart';
 import 'bloc/product_bloc.dart';
 
 import 'screens/cart_screen.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: BlocProvider(
         create: (context) => ProductBloc(httpClient: http.Client()),
-        child: ProductListScreen(),
+        child: const ProductListScreen(),
       ),
       routes: {
         '/cart': (context) => CartScreen(),
@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
 }
 
 class ProductListScreen extends StatelessWidget {
+  const ProductListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProductBloc productBloc = BlocProvider.of<ProductBloc>(context);
@@ -47,7 +49,7 @@ class ProductListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text(
+        title: const Text(
           'Books List',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -88,6 +90,7 @@ class ProductListScreen extends StatelessWidget {
           if (state is ProductInitialState || state is ProductLoadingState) {
             return Center(child: CircularProgressIndicator());
           } else if (state is ProductLoadedState) {
+            // Ensure that state.products is of type List<Product>
             return ProductListView(products: state.products);
           } else if (state is ProductErrorState) {
             return Center(child: Text('Error: ${state.error}'));
@@ -138,8 +141,7 @@ class ProductListScreen extends StatelessWidget {
 class ProductListView extends StatelessWidget {
   final List<Product> products;
 
-  ProductListView({required this.products});
-
+  const ProductListView({super.key, required this.products});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

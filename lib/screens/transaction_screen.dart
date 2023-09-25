@@ -6,7 +6,7 @@ class TransactionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Transactions History' , style: TextStyle(fontWeight: FontWeight.bold),),
+        title: const Text('Transactions History' , style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       body: TransactioTable(),
     );
@@ -15,6 +15,8 @@ class TransactionScreen extends StatelessWidget {
 
 
 class TransactioTable extends StatelessWidget {
+  const TransactioTable({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Sample data for demonstration (replace with your actual data)
@@ -38,7 +40,7 @@ class TransactioTable extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
-        columns: <DataColumn>[
+        columns: const <DataColumn>[
           DataColumn(
             label: Text('ID'),
           ),

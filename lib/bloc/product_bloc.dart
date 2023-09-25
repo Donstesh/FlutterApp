@@ -12,9 +12,8 @@ abstract class ProductEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchProducts extends ProductEvent {} // Event to fetch products
+class FetchProducts extends ProductEvent {}
 
-// Define the states
 abstract class ProductState extends Equatable {
   @override
   List<Object> get props => [];
@@ -53,7 +52,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   void _fetchProducts(FetchProducts event, Emitter<ProductState> emit) async {
     emit(ProductLoadingState());
     try {
-      final response = await httpClient.get(Uri.parse('http://127.0.0.1:8000/api/products')); // Replace with your API endpoint
+      final response = await httpClient.get(Uri.parse('http://127.0.0.1:8000/api/products'));
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = json.decode(response.body);
         final List<Product> products = jsonData.map((data) => Product.fromJson(data)).toList();

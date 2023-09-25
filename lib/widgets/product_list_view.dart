@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/Product.dart';
+import '../models/product.dart';
 
 class ProductListView extends StatelessWidget {
-  final List<Product> products; // Replace with your actual product model
+  final List<Product> products;
 
-  ProductListView({required this.products});
+  const ProductListView({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
